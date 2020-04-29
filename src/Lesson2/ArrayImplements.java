@@ -1,5 +1,6 @@
 package Lesson2;
 
+import java.util.Arrays;
 import java.util.Objects;
 
 public class ArrayImplements<E> implements Array<E> {
@@ -25,27 +26,50 @@ public class ArrayImplements<E> implements Array<E> {
 
 
     @Override
-    public boolean add(Object value) {
-        return false;
+    public void add(E value) {
+        if(size >= arrayData.length){
+            arrayData = Arrays.copyOf(arrayData, (int) ((int) size * DEGREE_OF_INCREASE));
+        }
+        arrayData[size] = value;
+        size++;
+
     }
 
     @Override
-    public int indexOf(Object value) {
-        return 0;
+    public int indexOf(E value) {
+        for (int i = 0; i < size; i++) {
+            if (arrayData[i].equals(value)) {
+                return i;
+            }
+        }
+        return -1;
     }
 
     @Override
     public E get(int index) {
-        return null;
+        checkVA(index);
+        return arrayData[index];
     }
 
+
     @Override
-    public boolean remove(Object value) {
+    public boolean remove(E value) {
+        int index = indexOf(value);
+        remove(index);
         return false;
     }
 
     @Override
     public boolean remove(int index) {
-        return false;
+        checkVA(index);
+        System.arraycopy(arrayData, arrayData.length - 1 - index,
+                arrayData, arrayData.length - 2, arrayData.length - size);
+        return fals;
+    }
+
+    private void checkVA(int index) {
+        if(index < 0 || index >= size){
+            throw  new IndexOutOfBoundsException("You have gone beyond this array!");
+        }
     }
 }
