@@ -9,9 +9,25 @@ public interface Array<E> {
     void add(E value);
 
     int indexOf(E value);
+
     E get(int index);
 
     boolean remove(E value);
-    boolean remove(int index);
+
+    E remove(int index);
+
+    boolean contains(E value);
+
+    boolean isEmpty();
+
+    int size();
+
+    void display();
+
+    void sortBubble();
+
+    void sortSelect();
+
+    void sortInsert();
 
 }
